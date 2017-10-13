@@ -4,14 +4,42 @@
   </ion-navbar>
 </ion-header>
 
+
+
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+
+
+  <ion-list>
+      <ion-item-sliding *ngFor="let item of employees | async json">
+
+        <ion-item>
+
+          <ion-avatar item-start>
+
+            <img src="https://firebasestorage.googleapis.com/v0/b/ionicdb-f4783.appspot.com/o/images%2F{{ item.image }}.jpg?alt=media&token=796b947b-a7aa-474e-bc17-1ff996394d16">
+          </ion-avatar>
+          <h2> {{item.name}} {{item.lname}}</h2>
+          <p>{{item.age}}</p>
+          <p>{{item.dept}}</p>
+          <p>{{item.$id}} photo name :    {{ item.image }} </p>
+
+        </ion-item>
+        <ion-item-options side="left">
+          <button ion-button color="primary">
+            <ion-icon name="ios-create"></ion-icon>
+            Edit
+          </button>
+
+        </ion-item-options>
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="deleteEmployee(item.$key)">
+            <ion-icon name="ios-trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+
 </ion-content>
